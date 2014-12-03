@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202233103) do
+ActiveRecord::Schema.define(version: 20141203062745) do
+
+  create_table "postings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "housing_type"
+    t.integer  "bedroom_num"
+    t.integer  "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "postings", ["user_id"], name: "index_postings_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +40,13 @@ ActiveRecord::Schema.define(version: 20141202233103) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "username"
+    t.string   "major"
+    t.integer  "age"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
