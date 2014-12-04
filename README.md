@@ -27,8 +27,8 @@ Features:
 * Users can view housing opportunities
 
 Division of Labor:
-  Michael: Models
-  Declan: Uploading Images and other features, video
+* Michael: Models
+* Declan: Uploading Images and other features, video
 
  http://youtu.be/JlCVbl2L-34
 
