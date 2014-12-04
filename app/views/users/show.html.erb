@@ -1,15 +1,49 @@
 <style>
 #left {
     text-align: left;
-    padding-right: 92%;
+    padding-right: 84%;
 }
 </style>
 
 <h3>User</h3>
-<p id="left"><%= image_tag @user.image.url(:med) %></p>
+<p id="left"><%= image_tag @user.image.url(:large) %></p>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
-<p>Username: <%= @user.username if @user.username %></p>
 <p>major: <%= @user.major if @user.major %></p>
 <p>age: <%= @user.age if @user.major %></p>
+
+<% if @user.postings.empty? or @user.id != current_user.id%>
+  <h4> No Postings! </h4>
+<% else %>
+  <h4>Postings:</h4>
+  <table>
+  <% @user.postings.each do |posting| %>
+   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+   	<td><%= image_tag posting.image.url(:med) %></td>
+    <td class="list_description"> 
+      <dl>
+        <dt><%= posting.title %></dt>
+        <dd>Description: <%= truncate(strip_tags(posting.description),
+              length: 80) %>
+        </dd>
+        <dd>Housing Type: <%= posting.housing_type%></dd>
+        <dd>Number of Bedrooms: <%= posting.bedroom_num%></dd>
+        <dd>Monthly Cost: $<%= posting.cost%></dd>
+
+      </dl> 
+    </td>
+
+    <% if posting.user_id == current_user.id %>
+      <td class="list_actions">
+        <%= link_to 'Show', posting %><br/>
+        <%= link_to 'Edit', edit_posting_path(posting) %><br/> 
+        <%= link_to 'Destroy', posting,
+                    confirm: 'are you sure?',
+                    method: :delete %>
+      </td>
+    <% end %> 
+  </tr>
+<% end %>
+</table>
+<% end %>
 

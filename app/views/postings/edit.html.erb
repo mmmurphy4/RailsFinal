@@ -1,0 +1,49 @@
+<h1>Edit Posting</h1>
+
+<%= form_for(@posting, :html => {:multipart => true}) do |f| %>
+  <% if @posting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@posting.errors.count, "error") %> prohibited this posting from being saved:</h2>
+
+      <ul>
+      <% @posting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows: 6%>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :cost %><br>
+    <%= f.text_field :cost %>
+  </div>
+  <br>
+  <div class="field">
+    <p><b>Housing type</b></p>
+    <%= f.select :housing_type, [['Apartment', 'apartment'], ['House', 'house']] %>
+  </div>
+  <br>
+  <div class="field">
+    <p><b>Number of Bedrooms</b></p>
+    <%= f.text_field :bedroom_num %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br>
+<%= link_to 'Back', postings_path %>

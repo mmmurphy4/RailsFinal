@@ -1,0 +1,35 @@
+<h1>Listing postings</h1>
+
+<table>
+  <% @postings.each do |posting| %>
+   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+   	<td><%= image_tag posting.image.url(:med) %></td>
+    <td class="list_description"> 
+      <dl>
+        <dt><%= posting.title %></dt>
+        <dd>Description: <%= truncate(strip_tags(posting.description),
+              length: 80) %>
+        </dd>
+        <dd>Housing type: <%= posting.housing_type%></dd>
+        <dd>Number of Bedrooms: <%= posting.bedroom_num%></dd>
+        <dd>Amount per month: $<%= posting.cost%></dd>
+        
+
+      </dl> 
+    </td>
+
+      <td class="list_actions">
+        <%= link_to 'Show', posting %><br/>
+        <% if posting.user_id == current_user.id %>
+          <%= link_to 'Edit', edit_posting_path(posting) %><br/> 
+          <%= link_to 'Destroy', posting,
+                      confirm: 'are you sure?',
+                      method: :delete %>
+        <% end %>
+      </td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+<%= link_to 'New Post', new_posting_path %>
