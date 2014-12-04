@@ -12,8 +12,9 @@
 <p>major: <%= @user.major if @user.major %></p>
 <p>age: <%= @user.age if @user.major %></p>
 
-<% if @user.postings.empty? or @user.id != current_user.id%>
+<% if @user.postings.empty? %>
   <h4> No Postings! </h4>
+<% elsif @user.id != current_user.id %>
 <% else %>
   <h4>Postings:</h4>
   <table>
@@ -45,5 +46,8 @@
   </tr>
 <% end %>
 </table>
+<% end %>
+<% if current_user.id == @user.id %>
+  <%= link_to 'New Post', new_posting_path %>
 <% end %>
 

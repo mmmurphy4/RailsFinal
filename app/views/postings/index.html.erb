@@ -22,7 +22,7 @@
         <%= link_to 'Show', posting %><br/>
         <% if posting.user_id == current_user.id %>
           <%= link_to 'Edit', edit_posting_path(posting) %><br/> 
-          <%= link_to 'Destroy', posting,
+          <%= link_to 'Delete', posting,
                       confirm: 'are you sure?',
                       method: :delete %>
         <% end %>
