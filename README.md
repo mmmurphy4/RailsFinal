@@ -26,5 +26,7 @@ Division of Labor:
   Declan: Uploading Images and other features, video
 
  http://youtu.be/JlCVbl2L-34
+ https://morning-depths-6183.herokuapp.com
+ heroku app acts strange, won't save user edits
 
 
